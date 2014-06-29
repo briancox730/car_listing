@@ -62,4 +62,16 @@ feature 'user adds a new car' do
 
     expect(page).to have_content 'Year must be less than'
   end
+
+  scenario 'user adds car with invalid 10000' do
+    visit new_car_path
+    car = FactoryGirl.build(:car, year: 10000)
+    fill_in 'Color', with: car.color
+    fill_in 'Year', with: car.year
+    fill_in 'Mileage', with: car.mileage
+    fill_in 'Description', with: car.description
+    click_on 'Add Car'
+
+    expect(page).to have_content 'Year is the wrong length'
+  end
 end
