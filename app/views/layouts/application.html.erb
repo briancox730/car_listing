@@ -8,6 +8,15 @@
 </head>
 <body>
 
+<% if flash.any? %>
+  <div class="alert alert-info">
+    <strong>
+      <%= flash[:notice] %>
+      <%= flash[:alert] %>
+    </strong>
+  </div>
+<% end %>
+
 <%= yield %>
 
 </body>
