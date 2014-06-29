@@ -17,7 +17,6 @@ class ManufacturersController < ApplicationController
       flash[:notice] = 'Please try again!'
       render :new
     end
-
   end
 
   private

@@ -17,6 +17,18 @@ feature 'user adds a new car' do
     car = FactoryGirl.create(:car)
     visit new_car_path
 
+    select car.manufacturer.name, from: 'Manufacturer'
+    fill_in 'Color', with: car.color
+    fill_in 'Year', with: car.year
+    fill_in 'Mileage', with: car.mileage
+    fill_in 'Description', with: car.description
+    click_on 'Add Car'
+
+    expect(page).to have_content car.manufacturer.name
+    expect(page).to have_content car.color
+    expect(page).to have_content car.year
+    expect(page).to have_content car.mileage
+    expect(page).to have_content car.description
   end
   scenario 'user adds car and uses valid input'
   scenario 'user adds car and uses valid input'

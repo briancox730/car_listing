@@ -4,8 +4,17 @@
       <th>Manufacturer</th>
       <th>Color</th>
       <th>Year</th>
-      <th>Milage</th>
+      <th>Mileage</th>
       <th>Description</th>
     </tr>
   </thead>
+  <% @cars.each do |c| %>
+    <tr>
+      <td><%= c.manufacturer.name %></td>
+      <td><%= c.color %></td>
+      <td><%= c.year %></td>
+      <td><%= c.mileage %></td>
+      <td><%= c.description %></td>
+    </tr>
+  <% end %>
 </table>
