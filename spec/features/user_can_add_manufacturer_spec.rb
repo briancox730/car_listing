@@ -41,4 +41,16 @@ feature 'user adds a new manufacturer' do
 
     expect(page).to have_content 'Country can\'t be blank'
   end
+
+  scenario 'user adds a manufacturer that is already in the system' do
+    visit new_manufacturer_path
+    manufacturer = FactoryGirl.create(:manufacturer)
+    manufacturer2 = FactoryGirl.build(:manufacturer)
+
+    fill_in 'Name', with: manufacturer2.name
+    fill_in 'Country', with: manufacturer2.country
+    click_on 'Add Manufacturer'
+
+    expect(page).to have_content 'Name has already been taken'
+  end
 end

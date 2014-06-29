@@ -14,7 +14,7 @@ feature 'user adds a new car' do
   # Upon successfully creating a car, I am redirected back to the index of cars.
 
   scenario 'user adds car and uses valid input' do
-    car = FactoryGirl.create(:car)
+    car = FactoryGirl.build(:car)
     visit new_car_path
 
     select car.manufacturer.name, from: 'car[manufacturer_id]'
@@ -30,6 +30,7 @@ feature 'user adds a new car' do
     expect(page).to have_content car.mileage
     expect(page).to have_content car.description
   end
+
   scenario 'user submits blank form' do
     visit new_car_path
 
@@ -37,5 +38,28 @@ feature 'user adds a new car' do
 
     expect(page).to have_content 'can\'t be blank'
   end
-  scenario 'user adds car and uses valid input'
+
+  scenario 'user adds car with invalid year 1800' do
+    visit new_car_path
+    car = FactoryGirl.build(:car, year: 1800)
+    fill_in 'Color', with: car.color
+    fill_in 'Year', with: car.year
+    fill_in 'Mileage', with: car.mileage
+    fill_in 'Description', with: car.description
+    click_on 'Add Car'
+
+    expect(page).to have_content 'Year must be greater than 1919'
+  end
+
+  scenario 'user adds car with invalid year 2025' do
+    visit new_car_path
+    car = FactoryGirl.build(:car, year: 2025)
+    fill_in 'Color', with: car.color
+    fill_in 'Year', with: car.year
+    fill_in 'Mileage', with: car.mileage
+    fill_in 'Description', with: car.description
+    click_on 'Add Car'
+
+    expect(page).to have_content 'Year must be less than'
+  end
 end
