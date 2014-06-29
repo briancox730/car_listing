@@ -30,6 +30,12 @@ feature 'user adds a new car' do
     expect(page).to have_content car.mileage
     expect(page).to have_content car.description
   end
-  scenario 'user adds car and uses valid input'
+  scenario 'user submits blank form' do
+    visit new_car_path
+
+    click_on 'Add Car'
+
+    expect(page).to have_content 'Can\'t be blank'
+  end
   scenario 'user adds car and uses valid input'
 end
