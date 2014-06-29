@@ -13,7 +13,7 @@ feature 'user adds a new manufacturer' do
 
 
   scenario 'user adds manufacture and uses valid input' do
-    visit 'manufacturers/new'
+    visit new_manufacturer_path
     manufacture = FactoryGirl.build(:manufacturer)
 
     fill_in 'Name', with: manufacture.name
@@ -24,6 +24,21 @@ feature 'user adds a new manufacturer' do
     expect(page).to have_content manufacture.country
   end
 
-  scenario 'user does not add name'
-  scenario 'user does not add country'
+  scenario 'user does not add name' do
+    visit new_manufacturer_path
+
+    fill_in 'Country', with: 'Japan'
+    click_on 'Add Manufacturer'
+
+    expect(page).to have_content 'Name can\'t be blank'
+  end
+
+  scenario 'user does not add country' do
+    visit new_manufacturer_path
+
+    fill_in 'Name', with: 'Honda'
+    click_on 'Add Manufacturer'
+
+    expect(page).to have_content 'Country can\'t be blank'
+  end
 end

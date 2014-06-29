@@ -15,7 +15,7 @@ class ManufacturersController < ApplicationController
       redirect_to manufacturers_path
     else
       flash[:notice] = 'Please try again!'
-      render new
+      render :new
     end
 
   end
