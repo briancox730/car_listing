@@ -7,17 +7,41 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<% if flash.any? %>
-  <div class="alert alert-info">
-    <strong>
-      <%= flash[:notice] %>
-      <%= flash[:alert] %>
-    </strong>
+  <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Car listings</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><%= link_to 'Cars', cars_path %></li>
+          <li><%= link_to 'Add a car', new_car_path %></li>
+          <li><%= link_to 'Manufacturers', manufacturers_path %></li>
+          <li><%= link_to 'Add a manufacturer', new_manufacturer_path %></li>
+        </ul>
+      </div>
+    </div>
   </div>
-<% end %>
 
-<%= yield %>
+
+  <div class="container">
+    <% if flash.any? %>
+      <div class="alert alert-info">
+        <strong>
+          <%= flash[:notice] %>
+          <%= flash[:alert] %>
+        </strong>
+      </div>
+    <% end %>
+
+    <%= yield %>
+  </div>
 
 </body>
 </html>

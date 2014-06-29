@@ -1,5 +1,14 @@
-<ul>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Manufacturer</th>
+      <th>Country</th>
+    </tr>
+  </thead>
   <% @manufacturers.each do |m| %>
-    <li><%= m.name %> | <%= m.country %></li>
+    <tr>
+      <td><%= m.name %></td>
+      <td><%= m.country %></td>
+    </tr>
   <% end %>
-</ul>
+</table>

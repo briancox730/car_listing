@@ -17,7 +17,7 @@ feature 'user adds a new car' do
     car = FactoryGirl.create(:car)
     visit new_car_path
 
-    select car.manufacturer.name, from: 'Manufacturer'
+    select car.manufacturer.name, from: 'car[manufacturer_id]'
     fill_in 'Color', with: car.color
     fill_in 'Year', with: car.year
     fill_in 'Mileage', with: car.mileage
@@ -35,7 +35,7 @@ feature 'user adds a new car' do
 
     click_on 'Add Car'
 
-    expect(page).to have_content 'Can\'t be blank'
+    expect(page).to have_content 'can\'t be blank'
   end
   scenario 'user adds car and uses valid input'
 end

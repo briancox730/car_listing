@@ -1,4 +1,5 @@
 <%= form_for @car do |f| %>
+  <h2 class="form-signin-heading">Add a car</h2>
   <% if @car.errors.any? %>
     <ul>
       <% @car.errors.full_messages.each do |msg| %>
@@ -7,21 +8,16 @@
     </ul>
   <% end %>
 
-  <%= f.label :manufacturer_id %>
-  <%= f.collection_select :manufacturer_id, Manufacturer.all, :id, :name %>
-
-  <%= f.label :color %>
-  <%= f.text_field :color%>
-
-  <%= f.label :year %>
-  <%= f.text_field :year%>
-
-  <%= f.label :mileage %>
-  <%= f.text_field :mileage%>
-
-  <%= f.label :description %>
-  <%= f.text_field :description%>
-
-  <%= f.submit 'Add Car' %>
+  <%= f.collection_select :manufacturer_id, Manufacturer.all, :id, :name, {include_blank: 'Manufacturer'},class: 'form-control'  %>
+  <br>
+  <%= f.text_field :color, class: 'form-control', placeholder: 'Color' %>
+  <br>
+  <%= f.text_field :year, class: 'form-control', placeholder: 'Year' %>
+  <br>
+  <%= f.text_field :mileage, class: 'form-control', placeholder: 'Mileage' %>
+  <br>
+  <%= f.text_field :description, class: 'form-control', placeholder: 'Description' %>
+  <br>
+  <%= f.submit 'Add Car', class: 'btn btn-default' %>
 
 <% end %>

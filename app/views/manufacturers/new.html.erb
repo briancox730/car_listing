@@ -7,12 +7,10 @@
     </ul>
   <% end %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name%>
-
-  <%= f.label :country %>
-  <%= f.text_field :country%>
-
-  <%= f.submit 'Add Manufacturer' %>
+  <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>
+  <br>
+  <%= f.text_field :country, class: 'form-control', placeholder: 'Country' %>
+  <br>
+  <%= f.submit 'Add Manufacturer', class: 'btn btn-default' %>
 
 <% end %>
