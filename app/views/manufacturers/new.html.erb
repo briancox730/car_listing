@@ -1,0 +1,16 @@
+<%= form_for @manufacturer do |f| %>
+  <% if @manufacturer.errors.any? %>
+    <ul>
+      <% @manufacturer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>
+  <br>
+  <%= f.text_field :country, class: 'form-control', placeholder: 'Country' %>
+  <br>
+  <%= f.submit 'Add Manufacturer', class: 'btn btn-default' %>
+
+<% end %>
